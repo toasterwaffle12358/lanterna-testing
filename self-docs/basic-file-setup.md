@@ -77,6 +77,23 @@ so, with that established, the code for creating a basic panel should look like 
 val panel: Panel = Panel().setLayoutManager(BorderLayout())
 ~~~
 but because a panel doesn't actually look like anything, lets add a label to it.
+### adding a label to our panel
+adding sub items to a panel is easy, after you have created the panel (but before you add it to the window)
+just add a few lines to your code. \
+we could add the label in one line of code to the panel, this is a good option for simple labels, or things that aren't going to be called multiple times
+~~~
+panel.addComponent(Label("label text goes here")
+~~~
+(note: in this case, we used "panel.addComponent", however, if we had previously named our panel something else, for example "playSpace", we would write "playSpace.addComponent") \
+adding an item using one line works well in this situation, however, if we wanted to make something more complex, it might be best to first create our label, and then add it to the panel.
+~~~
+val labelName: Label = Label("label text goes here").setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine())
+panel.addComponent(labelName)
+~~~
+
+
+
+
 
 
 
