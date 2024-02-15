@@ -1,7 +1,4 @@
-package org.example
-
 //imports
-
 import com.googlecode.lanterna.TextColor
 import com.googlecode.lanterna.graphics.SimpleTheme
 import com.googlecode.lanterna.gui2.*
@@ -11,26 +8,28 @@ import com.googlecode.lanterna.screen.TerminalScreen
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory
 import com.googlecode.lanterna.terminal.Terminal
 
-fun main() {
-    println("Hello World!")
 
-    //setting up terminal and screen layers
+fun main() {
+    //starting terminal and screen layers
     val terminal: Terminal = DefaultTerminalFactory().createTerminal()
     val screen: Screen = TerminalScreen(terminal)
     screen.startScreen()
     val textGUI: WindowBasedTextGUI = MultiWindowTextGUI(screen)
 
-    //making panel that holds components
-    val panel: Panel = Panel()
-    panel.addComponent(Label("omg haiii :3"))
+    //creating panel
+    val panel: Panel = Panel().setLayoutManager(BorderLayout())
 
-    // Create window to hold the panel
+    //creating and adding label to panel
+    panel.addComponent(Label("label text goes here"))
+
+    //creating window
     val window = BasicWindow()
     window.title = "Hello World"
-    window.component = panel.withBorder(Borders.doubleLine("Title Test"))
+    window.component = panel
 
-    // Create gui and start gui
+
+    //creating gui
     val gui = MultiWindowTextGUI(screen, DefaultWindowManager(), EmptySpace(TextColor.RGB(16, 22, 24)))
+    //adding window to gui
     gui.addWindowAndWait(window)
-
 }

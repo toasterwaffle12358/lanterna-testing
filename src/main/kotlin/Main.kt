@@ -10,10 +10,14 @@ import com.googlecode.lanterna.screen.Screen
 import com.googlecode.lanterna.screen.TerminalScreen
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory
 import com.googlecode.lanterna.terminal.Terminal
+import java.util.concurrent.atomic.AtomicBoolean
+import javax.swing.KeyStroke
 
 
 fun main() {
     println("Hello World!")
+
+    var labelText: String = "no way, kotlin text ui!"
 
     val basicTheme = SimpleTheme.makeTheme(false, TextColor.RGB( 235, 232, 200 ), TextColor.RGB(14, 21, 24), TextColor.RGB(14, 21, 24), TextColor.RGB(14, 21, 24), TextColor.RGB( 235, 232, 200 ), TextColor.RGB(14, 21, 24), TextColor.RGB(14, 21, 24))
     val buttonTheme = SimpleTheme.makeTheme(false, TextColor.RGB( 235, 232, 200 ), TextColor.RGB(14, 21, 24), TextColor.RGB( 235, 232, 200 ), TextColor.RGB( 235, 232, 200 ), TextColor.RGB( 235, 232, 200 ), TextColor.RGB(32, 95, 122), TextColor.RGB(14, 21, 24))
@@ -60,7 +64,7 @@ fun main() {
             "(@)<_____>__(_____)____/ \n" +
             "OMGGGG KITTYYYYY HAIIIIIIII!!!!!"
     ).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.CENTER))
-    panel.addComponent(Label("no way \nkotlin text ui").setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.RIGHT))
+    panel.addComponent(Label(labelText).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.RIGHT))
     panel.fillColorOverride = TextColor.RGB(22, 38, 46)
 
     //making second panel that has flag
@@ -89,7 +93,14 @@ fun main() {
     //making panel that holds buttons
     val subBottomPanel6: Panel = Panel().setLayoutManager(LinearLayout(Direction.HORIZONTAL)).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
     //making buttons
-    val button1 = Button("test button", Runnable { MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 1"); }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
+    //button 1
+    val button1 = Button("test button 1", Runnable {
+        //MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 1");
+        labelText = "button 1 has been pressed"
+        println("button 1 has been pressed :3")
+    }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
+
+
     val button2 = Button("test button", Runnable { MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 2"); }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
     val button3 = Button("test button", Runnable { MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 3"); }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
     val button4 = Button("test button", Runnable { MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 4"); }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
@@ -112,6 +123,9 @@ fun main() {
     //adding bottom panel to main panel
     panel.addComponent(bottomPanel.setLayoutData(BorderLayout.Location.BOTTOM))
 
+    val keyStroke: KeyStroke = KeyStroke.getKeyStroke('g')
+
+
     // Create window to hold the panel
     val window = BasicWindow()
     window.component = panel.withBorder(Borders.doubleLine("Title Test"))
@@ -119,8 +133,13 @@ fun main() {
     window.setHints(listOf(Window.Hint.CENTERED, Window.Hint.FULL_SCREEN, Window.Hint.NO_POST_RENDERING));
     window.theme = basicTheme
 
+    //val listener = WindowListenerAdapter().onInput(window, com.googlecode.lanterna.input.KeyStroke('g', false, false, false), AtomicBoolean(true))
+    //window.addWindowListener(listener)
+
+
 
     // Create gui and start gui
     val gui = MultiWindowTextGUI(screen, DefaultWindowManager(), EmptySpace(TextColor.RGB(16, 22, 24)))
     gui.addWindowAndWait(window)
+
 }
