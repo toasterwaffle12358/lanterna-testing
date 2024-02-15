@@ -66,8 +66,7 @@ so far, including the creation of a panel, our code should be organized as such:
 //adding panel to window
 
 //creating gui
-//adding window to gui
-//starting gui and waiting
+//adding window to gui and waiting
 ~~~
 excluding the terminal and screen layers setup: at the top of our code, we make the smallest items, and then we make the item that it is contained within,
 and then we add our sub item to the containing item.
@@ -76,19 +75,74 @@ so, with that established, the code for creating a basic panel should look like 
 ~~~
 val panel: Panel = Panel().setLayoutManager(BorderLayout())
 ~~~
+now that we have created our panel, lets add it to our window, place the following line right after where you created the window
+~~~
+window.component = panel
+~~~
 but because a panel doesn't actually look like anything, lets add a label to it.
 ### adding a label to our panel
 adding sub items to a panel is easy, after you have created the panel (but before you add it to the window)
 just add a few lines to your code. \
 we could add the label in one line of code to the panel, this is a good option for simple labels, or things that aren't going to be called multiple times
 ~~~
-panel.addComponent(Label("label text goes here")
+panel.addComponent(Label("label text goes here"))
 ~~~
-(note: in this case, we used "panel.addComponent", however, if we had previously named our panel something else, for example "playSpace", we would write "playSpace.addComponent") \
+(note: in this case, we used "panel.addComponent", however, if we had previously named our panel something else, for example "playSpace", we would write "playSpace.addComponent")
+
 adding an item using one line works well in this situation, however, if we wanted to make something more complex, it might be best to first create our label, and then add it to the panel.
 ~~~
 val labelName: Label = Label("label text goes here").setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine())
 panel.addComponent(labelName)
+~~~
+as you can see, a label can be customized beyond just changing the text. in the example above, I changed the background color to a dark blue, and added a border around the text.
+more information on borders can be found in the [borders](borders.md) file
+
+while in this example we added a label to the panel, there are many other things that could have been added. options include buttons, other panels, check boxes, text input boxes, and more! \
+information on these gui elements can be found from the [main index](docs-index.md)
+
+## final result
+
+after following the instructions given above, you should get a result that looks like this:
+![final result](final_result_basic.png)
+
+### final code
+the final code should look like this:
+~~~
+//imports
+import com.googlecode.lanterna.TextColor
+import com.googlecode.lanterna.graphics.SimpleTheme
+import com.googlecode.lanterna.gui2.*
+import com.googlecode.lanterna.gui2.dialogs.MessageDialog
+import com.googlecode.lanterna.screen.Screen
+import com.googlecode.lanterna.screen.TerminalScreen
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory
+import com.googlecode.lanterna.terminal.Terminal
+
+
+fun main() {
+    //starting terminal and screen layers
+    val terminal: Terminal = DefaultTerminalFactory().createTerminal()
+    val screen: Screen = TerminalScreen(terminal)
+    screen.startScreen()
+    val textGUI: WindowBasedTextGUI = MultiWindowTextGUI(screen)
+
+    //creating panel
+    val panel: Panel = Panel().setLayoutManager(BorderLayout())
+
+    //creating and adding label to panel
+    panel.addComponent(Label("label text goes here"))
+
+    //creating window
+    val window = BasicWindow()
+    window.title = "Hello World"
+    window.component = panel
+
+
+    //creating gui
+    val gui = MultiWindowTextGUI(screen, DefaultWindowManager(), EmptySpace(TextColor.RGB(16, 22, 24)))
+    //adding window to gui
+    gui.addWindowAndWait(window)
+}
 ~~~
 
 

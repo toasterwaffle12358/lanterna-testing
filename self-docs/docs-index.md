@@ -11,5 +11,7 @@ its own documentation, and it can be found [here (GitHub readme)](https://github
 1. [adding lanterna to your project](getting-started-setup.md)
 2. [making your first project (unfinished)](basic-file-setup.md)
 
-## specific info
+## gui elements
 - [windows (unfinished)](windows.md)
+
+## theming and customization
