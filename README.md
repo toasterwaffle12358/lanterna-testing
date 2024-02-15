@@ -7,3 +7,8 @@ lanterna is a TUI library similar to ncurses but for java, it can run on any xte
 ![Screenshot 2](https://github.com/toasterwaffle12358/lanterna-testing/assets/115607216/a951e292-ce82-467c-a608-a15ba359328a)
 ![Screenshot 3](https://github.com/toasterwaffle12358/lanterna-testing/assets/115607216/023203b4-7c12-4910-b3b2-c40a51a28e33)
 
+## personal documentation
+my own personal documentation can be found [here](/self-docs/docs-index.md)
+
+these docs are in no way official and are not affiliated with the lanterna team. lanterna has its own documentation and it can be found from their github page.
+
