@@ -9,7 +9,7 @@ its own documentation, and it can be found [here (GitHub readme)](https://github
 
 ## getting started/basic info
 1. [adding lanterna to your project](getting-started-setup.md)
-2. [making your first project (unfinished)](basic-file-setup.md)
+2. [making your first project](basic-file-setup.md)
 
 ## gui elements
 - [windows (unfinished)](windows.md)
