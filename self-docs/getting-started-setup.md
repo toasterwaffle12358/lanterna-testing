@@ -10,3 +10,6 @@ the line should be put in the "dependencies" section of the file. \
 here is an example: \
 ![example image](dependencies_example.png)
 
+
+
+[back to main page](docs-index.md)
