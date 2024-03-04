@@ -10,6 +10,9 @@ import com.googlecode.lanterna.terminal.Terminal
 
 
 fun main() {
+    //creating themes
+    val exampleTheme = SimpleTheme.makeTheme(false, TextColor.RGB( 235, 232, 200 ), TextColor.RGB(14, 21, 24), TextColor.RGB(14, 21, 24), TextColor.RGB(14, 21, 24), TextColor.RGB( 235, 232, 200 ), TextColor.RGB(14, 21, 24), TextColor.RGB(14, 21, 24))
+
     //starting terminal and screen layers
     val terminal: Terminal = DefaultTerminalFactory().createTerminal()
     val screen: Screen = TerminalScreen(terminal)
@@ -17,15 +20,23 @@ fun main() {
     val textGUI: WindowBasedTextGUI = MultiWindowTextGUI(screen)
 
     //creating panel
-    val panel: Panel = Panel().setLayoutManager(BorderLayout())
+    val panel = Panel()
 
     //creating and adding label to panel
-    panel.addComponent(Label("label text goes here"))
+    val label1 = Label("label text goes here")
+    label1.withBorder(Borders.doubleLine())
+    panel.addComponent(label1)
+
+    //creating button
+    val button1: Button = Button("test button 1", Runnable {})
+    val button2: Button = Button("test button 2", Runnable {})
+    panel.addComponent(button1)
+    panel.addComponent(button2)
 
     //creating window
     val window = BasicWindow()
     window.title = "Hello World"
-    window.component = panel
+    window.component = panel.withBorder(Borders.singleLineBevel())
 
 
     //creating gui

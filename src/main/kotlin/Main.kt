@@ -20,7 +20,7 @@ fun main() {
     var labelText: String = "no way, kotlin text ui!"
 
     val basicTheme = SimpleTheme.makeTheme(false, TextColor.RGB( 235, 232, 200 ), TextColor.RGB(14, 21, 24), TextColor.RGB(14, 21, 24), TextColor.RGB(14, 21, 24), TextColor.RGB( 235, 232, 200 ), TextColor.RGB(14, 21, 24), TextColor.RGB(14, 21, 24))
-    val buttonTheme = SimpleTheme.makeTheme(false, TextColor.RGB( 235, 232, 200 ), TextColor.RGB(14, 21, 24), TextColor.RGB( 235, 232, 200 ), TextColor.RGB( 235, 232, 200 ), TextColor.RGB( 235, 232, 200 ), TextColor.RGB(32, 95, 122), TextColor.RGB(14, 21, 24))
+    val buttonTheme = SimpleTheme.makeTheme(true, TextColor.RGB( 235, 232, 200 ), TextColor.RGB(14, 21, 24), TextColor.RGB( 235, 232, 200 ), TextColor.RGB( 235, 232, 200 ), TextColor.RGB( 235, 232, 200 ), TextColor.RGB(32, 95, 122), TextColor.RGB(14, 21, 24))
 
     //setting up terminal and screen layers
     val terminal: Terminal = DefaultTerminalFactory().createTerminal()
@@ -64,12 +64,13 @@ fun main() {
             "(@)<_____>__(_____)____/ \n" +
             "OMGGGG KITTYYYYY HAIIIIIIII!!!!!"
     ).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.CENTER))
-    panel.addComponent(Label(labelText).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.RIGHT))
+    var changingLabel = Label(labelText).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.RIGHT)
+    panel.addComponent(changingLabel)
     panel.fillColorOverride = TextColor.RGB(22, 38, 46)
 
     //making second panel that has flag
     val bottomPanel: Panel = Panel().setLayoutManager(LinearLayout(Direction.VERTICAL))
-    //making subpanels that will hold flag colors
+    //making sub-panels that will hold flag colors
     val subBottomPanel: Panel = Panel().setLayoutManager(BorderLayout())
     subBottomPanel.fillColorOverride = TextColor.RGB( 174, 214, 241 )
     subBottomPanel.addComponent(Label("").setBackgroundColor(TextColor.RGB( 174, 214, 241 )))
@@ -93,21 +94,62 @@ fun main() {
     //making panel that holds buttons
     val subBottomPanel6: Panel = Panel().setLayoutManager(LinearLayout(Direction.HORIZONTAL)).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
     //making buttons
-    //button 1
     val button1 = Button("test button 1", Runnable {
         //MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 1");
         labelText = "button 1 has been pressed"
-        println("button 1 has been pressed :3")
+        panel.removeComponent(changingLabel)
+        changingLabel = Label(labelText).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.RIGHT)
+        panel.addComponent(changingLabel)
     }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
-
-
-    val button2 = Button("test button", Runnable { MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 2"); }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
-    val button3 = Button("test button", Runnable { MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 3"); }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
-    val button4 = Button("test button", Runnable { MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 4"); }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
-    val button5 = Button("test button", Runnable { MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 5"); }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
-    val button6 = Button("test button", Runnable { MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 6"); }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
-    val button7 = Button("test button", Runnable { MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 7"); }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
-    val button8 = Button("test button", Runnable { MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 8"); }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
+    val button2 = Button("test button 2", Runnable {
+        //MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 2");
+        labelText = "button 2 has been pressed"
+        panel.removeComponent(changingLabel)
+        changingLabel = Label(labelText).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.RIGHT)
+        panel.addComponent(changingLabel)
+    }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
+    val button3 = Button("test button 3", Runnable {
+        //MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 3");
+        labelText = "button 3 has been pressed"
+        panel.removeComponent(changingLabel)
+        changingLabel = Label(labelText).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.RIGHT)
+        panel.addComponent(changingLabel)
+    }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
+    val button4 = Button("test button 4", Runnable {
+        //MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 4");
+        labelText = "button 4 has been pressed"
+        panel.removeComponent(changingLabel)
+        changingLabel = Label(labelText).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.RIGHT)
+        panel.addComponent(changingLabel)
+    }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
+    val button5 = Button("test button 5", Runnable {
+        //MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 5");
+        labelText = "button 5 has been pressed"
+        panel.removeComponent(changingLabel)
+        changingLabel = Label(labelText).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.RIGHT)
+        panel.addComponent(changingLabel)
+    }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
+    val button6 = Button("test button 6", Runnable {
+        //MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 6");
+        labelText = "button 6 has been pressed"
+        panel.removeComponent(changingLabel)
+        changingLabel = Label(labelText).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.RIGHT)
+        panel.addComponent(changingLabel)
+    }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
+    val button7 = Button("test button 7", Runnable {
+        //MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 7");
+        labelText = "button 7 has been pressed"
+        panel.removeComponent(changingLabel)
+        changingLabel = Label(labelText).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.RIGHT)
+        panel.addComponent(changingLabel)
+    }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
+    val button8 = Button("test button 8", Runnable {
+        //MessageDialog.showMessageDialog(textGUI, "Message", "holy moly guacamole 8");
+        labelText = "button 8 has been pressed"
+        panel.removeComponent(changingLabel)
+        changingLabel = Label(labelText).setBackgroundColor(TextColor.RGB(22, 38, 46)).withBorder(Borders.doubleLine()).setLayoutData(BorderLayout.Location.RIGHT)
+        panel.addComponent(changingLabel)
+    }).setRenderer(Button.FlatButtonRenderer()).withBorder(Borders.doubleLine("button title")).setVisible(true).setTheme(buttonTheme).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill))
 
     subBottomPanel6.addComponent(button1)
     subBottomPanel6.addComponent(button2)
